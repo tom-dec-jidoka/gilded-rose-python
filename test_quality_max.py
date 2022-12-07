@@ -12,6 +12,12 @@ class AgedBrieTest(unittest.TestCase):
         gilded_rose.update_quality()
         self.assertEquals(50, items[0].quality)
 
+    def test_quility_max_brie_start_from_49(self):
+        items = [ItemFactory.create(AGED_BRIE, 1, 49)]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+        self.assertEquals(50, items[0].quality)
+
     def test_quality_max_backstage_passes_12(self):
         items = [ItemFactory.create(BACKSTAGE_PASS, 12, 50)]
         gilded_rose = GildedRose(items)

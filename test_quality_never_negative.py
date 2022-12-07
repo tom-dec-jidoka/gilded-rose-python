@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import unittest
 
+from constants import *
 from gilded_rose import ItemFactory, GildedRose
 
 
@@ -36,6 +37,20 @@ class ItemQualityTest(unittest.TestCase):
         self.assertEquals(0, item.quality)
         print(item)
 
-        
+    def test_conjured_item(self):
+        item = ItemFactory.create(CONJURED, 10, 1)
+
+        item.update_quality()
+
+        self.assertEquals(0, item.quality)
+
+    
+    def test_conjured_item_start_from_3_and_date_passed(self):
+        item = ItemFactory.create(CONJURED, 0, 3)
+
+        item.update_quality()
+
+        self.assertEquals(0, item.quality)
+
 if __name__ == '__main__':
     unittest.main()
