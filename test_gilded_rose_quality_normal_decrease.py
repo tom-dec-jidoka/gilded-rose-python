@@ -16,7 +16,7 @@ class GildedRoseQualityDecreasesTwiceAsFastTest(unittest.TestCase):
         self.assertEquals(8, items[0].quality)
         
 
-    def test_double_decrease(self):
+    def test_two_decrease(self):
         items = [Item("Dummy", 2, 10)]
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
