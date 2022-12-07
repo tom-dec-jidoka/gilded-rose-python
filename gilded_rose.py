@@ -23,9 +23,7 @@ class Item:
         self.name = name
         self.sell_in = sell_in
         self.quality = quality
-        if(name == AGED_BRIE):
-            self = AgdBrie(name, sell_in, quality)
-    
+        
     def __repr__(self):
         return "%s, %s, %s" % (self.name, self.sell_in, self.quality)
 
@@ -37,11 +35,9 @@ class Item:
         if self.name != SULFURAS:
             self.sell_in = self.sell_in - 1
         if self.sell_in < 0:
-            if self.name != AGED_BRIE:
-                if self.name != BACKSTAGE_PASS:
-                    if self.quality > 0:
-                        if self.name != SULFURAS:
-                            self.quality = self.quality - 1
+            if self.quality > 0:
+                if self.name != SULFURAS:
+                    self.quality = self.quality - 1
             
 
 class AgdBrie(Item):
@@ -87,3 +83,4 @@ class BackstagePass(Item):
         
         if self.sell_in < 0:
             self.quality = self.quality - self.quality    
+
