@@ -8,33 +8,7 @@ class GildedRose(object):
 
     def update_quality(self):
         for item in self.items:
-            if item.name != AGED_BRIE and item.name != BACKSTAGE_PASS:
-                if item.quality > 0:
-                    if item.name != SULFURAS:
-                        item.quality = item.quality - 1
-            else:
-                if item.quality < 50:
-                    item.quality = item.quality + 1
-                    if item.name == BACKSTAGE_PASS:
-                        if item.sell_in < 11:
-                            if item.quality < 50:
-                                item.quality = item.quality + 1
-                        if item.sell_in < 6:
-                            if item.quality < 50:
-                                item.quality = item.quality + 1
-            if item.name != SULFURAS:
-                item.sell_in = item.sell_in - 1
-            if item.sell_in < 0:
-                if item.name != AGED_BRIE:
-                    if item.name != BACKSTAGE_PASS:
-                        if item.quality > 0:
-                            if item.name != SULFURAS:
-                                item.quality = item.quality - 1
-                    else:
-                        item.quality = item.quality - item.quality
-                else:
-                    if item.quality < 50:
-                        item.quality = item.quality + 1
+            item.update_quality()
 
 class ItemFactory:
     def create(name, sell_in, quality):
@@ -49,10 +23,38 @@ class Item:
         self.quality = quality
         if(name == AGED_BRIE):
             self = AgdBrie(name, sell_in, quality)
-            
-
+    
     def __repr__(self):
         return "%s, %s, %s" % (self.name, self.sell_in, self.quality)
+
+    def update_quality(self):
+        if self.name != AGED_BRIE and self.name != BACKSTAGE_PASS:
+            if self.quality > 0:
+                if self.name != SULFURAS:
+                    self.quality = self.quality - 1
+        else:
+            if self.quality < 50:
+                self.quality = self.quality + 1
+                if self.name == BACKSTAGE_PASS:
+                    if self.sell_in < 11:
+                        if self.quality < 50:
+                            self.quality = self.quality + 1
+                    if self.sell_in < 6:
+                        if self.quality < 50:
+                            self.quality = self.quality + 1
+        if self.name != SULFURAS:
+            self.sell_in = self.sell_in - 1
+        if self.sell_in < 0:
+            if self.name != AGED_BRIE:
+                if self.name != BACKSTAGE_PASS:
+                    if self.quality > 0:
+                        if self.name != SULFURAS:
+                            self.quality = self.quality - 1
+                else:
+                    self.quality = self.quality - self.quality
+            else:
+                if self.quality < 50:
+                    self.quality = self.quality + 1
 
 class AgdBrie(Item):
     def __init__(self, name, sell_in, quality):
