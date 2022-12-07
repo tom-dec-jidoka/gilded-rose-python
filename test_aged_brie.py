@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 import unittest
 
-from gilded_rose import Item, GildedRose
+from gilded_rose import Item,ItemFactory , GildedRose
 
 
 class AgedBrieTest(unittest.TestCase):
     def test_normal_aging(self):
-        items = [Item("Aged Brie", 1, 0)]
+        items = [ItemFactory.create("Aged Brie", 1, 0)]
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
+        print(items[0])
         self.assertEquals(1, items[0].quality)
         
     def test_normal_aging_after_0(self):

@@ -35,12 +35,29 @@ class GildedRose(object):
                     if item.quality < 50:
                         item.quality = item.quality + 1
 
-
+class ItemFactory:
+    def create(name, sell_in, quality):
+        if(name == "Aged Brie"):
+            return AgdBrie(name, sell_in, quality)
+        else:
+            return Item(name, sell_in, quality)
 class Item:
+    def __init__(self, name, sell_in, quality):
+        self.name = name
+        self.sell_in = sell_in
+        self.quality = quality
+        if(name == "Aged Brie"):
+            self = AgdBrie(name, sell_in, quality)
+            
+
+    def __repr__(self):
+        return "%s, %s, %s" % (self.name, self.sell_in, self.quality)
+
+class AgdBrie(Item):
     def __init__(self, name, sell_in, quality):
         self.name = name
         self.sell_in = sell_in
         self.quality = quality
 
     def __repr__(self):
-        return "%s, %s, %s" % (self.name, self.sell_in, self.quality)
+        return "Hi I am Brie %s, %s, %s" % (self.name, self.sell_in, self.quality)
