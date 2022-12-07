@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 import unittest
 
-from gilded_rose import Item, GildedRose
+from gilded_rose import ItemFactory, GildedRose
 
 
 class GildedRoseQualityDecreasesTwiceAsFastTest(unittest.TestCase):
     def test_normal_decrease(self):
-        items = [Item("Dummy", 2, 10)]
+        items = [ItemFactory.create("Dummy", 2, 10)]
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
         self.assertEquals(1, items[0].sell_in)
@@ -17,7 +17,7 @@ class GildedRoseQualityDecreasesTwiceAsFastTest(unittest.TestCase):
         
 
     def test_two_decrease(self):
-        items = [Item("Dummy", 2, 10)]
+        items = [ItemFactory.create("Dummy", 2, 10)]
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
         gilded_rose.update_quality()

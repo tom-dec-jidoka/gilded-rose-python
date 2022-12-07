@@ -6,15 +6,15 @@ from gilded_rose import *
 if __name__ == "__main__":
     print ("OMGHAI!")
     items = [
-             Item(name="+5 Dexterity Vest", sell_in=10, quality=20),
-             Item(name=AGED_BRIE, sell_in=2, quality=0),
-             Item(name="Elixir of the Mongoose", sell_in=5, quality=7),
-             Item(name=SULFURAS, sell_in=0, quality=80),
-             Item(name=SULFURAS, sell_in=-1, quality=80),
-             Item(name=BACKSTAGE_PASS, sell_in=15, quality=20),
-             Item(name=BACKSTAGE_PASS, sell_in=10, quality=49),
-             Item(name=BACKSTAGE_PASS, sell_in=5, quality=49),
-             Item(name="Conjured Mana Cake", sell_in=3, quality=6),  # <-- :O
+             ItemFactory.create(name="+5 Dexterity Vest", sell_in=10, quality=20),
+             ItemFactory.create(name=AGED_BRIE, sell_in=2, quality=0),
+             ItemFactory.create(name="Elixir of the Mongoose", sell_in=5, quality=7),
+             ItemFactory.create(name=SULFURAS, sell_in=0, quality=80),
+             ItemFactory.create(name=SULFURAS, sell_in=-1, quality=80),
+             ItemFactory.create(name=BACKSTAGE_PASS, sell_in=15, quality=20),
+             ItemFactory.create(name=BACKSTAGE_PASS, sell_in=10, quality=49),
+             ItemFactory.create(name=BACKSTAGE_PASS, sell_in=5, quality=49),
+             ItemFactory.create(name="Conjured Mana Cake", sell_in=3, quality=6),  # <-- :O
             ]
 
     days = 2
