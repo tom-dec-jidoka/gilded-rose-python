@@ -14,6 +14,8 @@ class ItemFactory:
     def create(name, sell_in, quality):
         if(name == AGED_BRIE):
             return AgdBrie(name, sell_in, quality)
+        elif(name == BACKSTAGE_PASS):
+            return BackstagePass(name, sell_in, quality)
         else:
             return Item(name, sell_in, quality)
 class Item:
@@ -28,20 +30,10 @@ class Item:
         return "%s, %s, %s" % (self.name, self.sell_in, self.quality)
 
     def update_quality(self):
-        if self.name != AGED_BRIE and self.name != BACKSTAGE_PASS:
-            if self.quality > 0:
-                if self.name != SULFURAS:
-                    self.quality = self.quality - 1
-        else:
-            if self.quality < 50:
-                self.quality = self.quality + 1
-                if self.name == BACKSTAGE_PASS:
-                    if self.sell_in < 11:
-                        if self.quality < 50:
-                            self.quality = self.quality + 1
-                    if self.sell_in < 6:
-                        if self.quality < 50:
-                            self.quality = self.quality + 1
+        if self.quality > 0:
+            if self.name != SULFURAS:
+                self.quality = self.quality - 1
+                
         if self.name != SULFURAS:
             self.sell_in = self.sell_in - 1
         if self.sell_in < 0:
@@ -50,11 +42,7 @@ class Item:
                     if self.quality > 0:
                         if self.name != SULFURAS:
                             self.quality = self.quality - 1
-                else:
-                    self.quality = self.quality - self.quality
-            else:
-                if self.quality < 50:
-                    self.quality = self.quality + 1
+            
 
 class AgdBrie(Item):
     def __init__(self, name, sell_in, quality):
@@ -75,3 +63,27 @@ class AgdBrie(Item):
             if self.quality < 50:
                 self.quality = self.quality + 1
                 
+class BackstagePass(Item):
+    def __init__(self, name, sell_in, quality):
+        self.name = name
+        self.sell_in = sell_in
+        self.quality = quality
+
+    def __repr__(self):
+        return "Hi I am Backstage pass %s, %s, %s" % (self.name, self.sell_in, self.quality)
+
+    def update_quality(self):
+        if self.quality < 50:
+            self.quality = self.quality + 1
+            
+            if self.sell_in < 11:
+                if self.quality < 50:
+                    self.quality = self.quality + 1
+            if self.sell_in < 6:
+                if self.quality < 50:
+                    self.quality = self.quality + 1
+        
+        self.sell_in = self.sell_in - 1
+        
+        if self.sell_in < 0:
+            self.quality = self.quality - self.quality    
