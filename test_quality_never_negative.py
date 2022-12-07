@@ -24,9 +24,17 @@ class ItemQualityTest(unittest.TestCase):
         self.assertEquals(0, item.quality)
 
     def test_Item_instantiated_with_negative_quality(self):
-        
+
         self.assertEquals(1, 1)
     
+    def test_Item_sell_in_has_passed(self):
+        item = Item("foo", -1, 1)
+        gilded_rose = GildedRose([item])
+        
+        gilded_rose.update_quality()
+
+        self.assertEquals(0, item.quality)
+        print(item)
 
         
 if __name__ == '__main__':

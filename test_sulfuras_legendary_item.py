@@ -29,9 +29,7 @@ class SulfurasIsNeverSoldTest(unittest.TestCase):
         gilded_rose.update_quality()
         
         self.assertEquals(-100, item.sell_in)
-        
-
-
+    
 class SulfurasDoesNotDecreaseInQuality(unittest.TestCase):
     def test_start_on_100(self):
         item = Item(SULFURAS_NAME, 100, 100)
