@@ -7,7 +7,7 @@ from gilded_rose import Item, GildedRose
 
 class AgedBrieTest(unittest.TestCase):
     def test_quility_max_brie(self):
-        items = [Item("Aged Brie", 1, 50)]
+        items = [Item(AGED_BRIE, 1, 50)]
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
         self.assertEquals(50, items[0].quality)

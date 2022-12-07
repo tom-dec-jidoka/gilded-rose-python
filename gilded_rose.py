@@ -25,7 +25,7 @@ class GildedRose(object):
             if item.name != "Sulfuras, Hand of Ragnaros":
                 item.sell_in = item.sell_in - 1
             if item.sell_in < 0:
-                if item.name != "Aged Brie":
+                if item.name != AGED_BRIE:
                     if item.name != BACKSTAGE_PASS:
                         if item.quality > 0:
                             if item.name != "Sulfuras, Hand of Ragnaros":
@@ -38,7 +38,7 @@ class GildedRose(object):
 
 class ItemFactory:
     def create(name, sell_in, quality):
-        if(name == "Aged Brie"):
+        if(name == AGED_BRIE):
             return AgdBrie(name, sell_in, quality)
         else:
             return Item(name, sell_in, quality)
@@ -47,7 +47,7 @@ class Item:
         self.name = name
         self.sell_in = sell_in
         self.quality = quality
-        if(name == "Aged Brie"):
+        if(name == AGED_BRIE):
             self = AgdBrie(name, sell_in, quality)
             
 
